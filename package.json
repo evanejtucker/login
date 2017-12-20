@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/evanejtucker/login/issues"
   },
-  "homepage": "https://github.com/evanejtucker/login#readme"
+  "homepage": "https://github.com/evanejtucker/login#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.7",
+    "morgan": "^1.9.0"
+  }
 }

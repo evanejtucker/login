@@ -7,12 +7,12 @@ var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
 
-  firstName: {
+  firstname: {
     type: String,
     unique: false,
     required: true
   },
-  lastName: {
+  lastname: {
     type: String,
     unique: false,
     required: true
@@ -35,6 +35,6 @@ var UserSchema = new Schema({
 
 });
 
-var User = mongoose.model("Questions", UserSchema);
+var User = mongoose.model("User", UserSchema);
 
 module.exports = User;

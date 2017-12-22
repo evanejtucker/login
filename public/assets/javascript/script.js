@@ -13,15 +13,22 @@ $( document ).ready(function() {
 
     // grab user info from modal
     var addUser = () => {
-        let firstName = $('#first_name').val().trim();
-        let lastName = $('#last_name').val().trim();
-        let userName = $('#newUsername').val().trim();
-        let password = $('#confirmPassword').val().trim();
-        let email = $('#email').val().trim();
+        let userObject = {
+            firstname : $('#first_name').val().trim(),
+            lastname : $('#last_name').val().trim(),
+            username : $('#newUsername').val().trim(),
+            password : $('#confirmPassword').val().trim(),
+            email : $('#email').val().trim()
+        }
 
-        console.log(firstName + " " + lastName + " " + userName + " " + password + " " + email);
-
-        
+        $.ajax({
+            type: "POST",
+            url: '/submit',
+            dataType: "json",
+            data: userObject
+          }).then((response)=> {
+              console.log(response);
+          });
     }
 
 

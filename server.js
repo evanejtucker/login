@@ -28,6 +28,30 @@ app.get('/', (req, res) => {
     res.sendFile('public/index.html')
 });
 
+app.post('/submit', (req, res, next) => {
+    let userInfo = req.body;
+    res.status(200).send(userInfo);
+    let newUser = new User({
+        firstname: userInfo.firstname, 
+        lastname: userInfo.lastname, 
+        username: userInfo.username, 
+        password: userInfo.password, 
+        email: userInfo.email
+    });
+    newUser.save(function (err, newUser) {
+        if (err) return console.error(err);
+      });
+    console.log(newUser);
+});
+
+app.get('/findall', (req, res, next)=> {
+    User.find(function(err, user) {
+        if (err) return console.error(err);
+        res.send(user);
+        console.log(user);
+    });
+});
+
 // users route
 app.use('/users', users)
 

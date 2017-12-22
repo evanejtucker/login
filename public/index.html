@@ -49,13 +49,19 @@
             <form class="col s12">
               <div class="row">
                 <div class="input-field col s6">
-                  <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+                  <input placeholder="first name" id="first_name" type="text" class="validate">
                   <label for="first_name">First Name</label>
                 </div>
                 <div class="input-field col s6">
-                  <input id="last_name" type="text" class="validate">
+                  <input placeholder="last name" id="last_name" type="text" class="validate">
                   <label for="last_name">Last Name</label>
                 </div>
+              </div>
+              <div class="row">
+                  <div class="input-field col s12">
+                    <input id="newUsername" type="text" class="validate">
+                    <label for="newUsername">Username</label>
+                  </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
@@ -68,7 +74,7 @@
                     <input id="confirmPassword" type="password" class="validate">
                     <label for="confirmPassword">Confirm Password</label>
                   </div>
-                </div>
+              </div>
               <div class="row">
                 <div class="input-field col s12">
                   <input id="email" type="email" class="validate">
@@ -77,7 +83,7 @@
               </div>
             </form>
           </div>
-      <a class="waves-effect waves-light btn">Create</a>
+      <a class="waves-effect waves-light btn" id="createNewUser">Create</a>
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">close</a>

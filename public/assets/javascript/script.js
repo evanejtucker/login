@@ -20,6 +20,8 @@ $( document ).ready(function() {
         let email = $('#email').val().trim();
 
         console.log(firstName + " " + lastName + " " + userName + " " + password + " " + email);
+
+        
     }
 
 

@@ -9,6 +9,10 @@ const app = express();
 // require routers
 var users = require('./routes/users')
 
+// user schema
+mongoose.Promise = Promise;
+var User = require("./models/User.js");
+
 // body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())

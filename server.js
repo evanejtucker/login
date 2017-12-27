@@ -4,11 +4,13 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
-const passport = require('passport');
+const passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
+
 
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 // require routers
 var users = require('./routes/users')
@@ -16,11 +18,9 @@ var users = require('./routes/users')
 // user schema
 var User = require("./models/User.js");
 
-// users router
-app.use('/users', users)
 
     // middleware
-    app.use(express.cookieParser());
+    app.use(cookieParser());
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json())
     app.use(morgan('tiny'));
@@ -28,6 +28,8 @@ app.use('/users', users)
     app.use(session({ secret: "cats" }));
     app.use(passport.initialize());
     app.use(passport.session());
+    // users router
+    app.use('/users', users)
 
 
 // connect to mongo
@@ -45,6 +47,29 @@ db.once('open', function() {
 app.get('/', (req, res) => {
     res.sendFile('public/index.html')
 });
+
+// passport stuff
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+      User.findOne({ username: username }, function(err, user) {
+        if (err) { return done(err); }
+        if (!user) {
+          return done(null, false, { message: 'Incorrect username.' });
+        }
+        if (!user.validPassword(password)) {
+          return done(null, false, { message: 'Incorrect password.' });
+        }
+        return done(null, user);
+      });
+    }
+  ));
+
+  app.post('/login', passport.authenticate('local', { 
+        successRedirect: '/users',
+        failureRedirect: '/',
+        failureFlash: true
+    })
+);
 
 // start server
 app.listen(port, () => {

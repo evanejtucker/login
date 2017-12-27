@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router()
-
+// user schema
+var User = require("../models/User.js");
 
 // define the home page route
 router.get('/', function (req, res) {

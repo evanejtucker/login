@@ -12,29 +12,34 @@ $( document ).ready(function() {
 // -----------------------------------------------------------------------------------------------------
 
     // grab user info from modal
-    var addUser = () => {
-        let userObject = {
-            firstname : $('#first_name').val().trim(),
-            lastname : $('#last_name').val().trim(),
-            username : $('#newUsername').val().trim(),
-            password : $('#confirmPassword').val().trim(),
-            email : $('#email').val().trim()
-        }
+    // var addUser = () => {
+    //     let userObject = {
+    //         firstname : $('#first_name').val().trim(),
+    //         lastname : $('#last_name').val().trim(),
+    //         username : $('#newUsername').val().trim(),
+    //         password : $('#confirmPassword').val().trim(),
+    //         email : $('#email').val().trim()
+    //     }
 
-        $.ajax({
-            type: "POST",
-            url: '/submit',
-            dataType: "json",
-            data: userObject
-          }).then((response)=> {
-              console.log(response);
-          });
-    }
+    //     $.ajax({
+    //         type: "POST",
+    //         url: '/submit',
+    //         dataType: "json",
+    //         data: userObject
+    //       }).then((response)=> {
+    //           console.log(response);
+    //       });
+    // }
+
+    var createUser = () => {
+        console.log('test');
+    };
 
 
 // Main Process
 // -----------------------------------------------------------------------------------------------------
 
-$('#createNewUser').on('click', addUser);
+// $('#createNewUser').on('click', addUser);
+$('#createNewUser').on('click', createUser);
 
 });

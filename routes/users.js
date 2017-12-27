@@ -21,21 +21,5 @@ router.get('/findall', (req, res, next)=> {
   });
 });
 
-router.post('/submit', (req, res, next) => {
-  let userInfo = req.body;
-  res.status(200).send(userInfo);
-  let newUser = new User({
-      firstname: userInfo.firstname, 
-      lastname: userInfo.lastname, 
-      username: userInfo.username, 
-      password: userInfo.password, 
-      email: userInfo.email
-  });
-  newUser.save(function (err, newUser) {
-      if (err) return console.error(err);
-    });
-  console.log(newUser);
-});
-
 
 module.exports = router

@@ -25,7 +25,14 @@ var User = require("./models/User.js");
     app.use(bodyParser.json())
     app.use(morgan('tiny'));
     app.use(express.static('public'));
-    app.use(session({ secret: "cats" }));
+    // app.use(session({ secret: "cats" }));
+    app.set('trust proxy', 1) // trust first proxy
+    app.use(session({
+        secret: 'keyboard cat',
+        resave: false,
+        saveUninitialized: true,
+        cookie: { secure: true }
+    }));
     app.use(passport.initialize());
     app.use(passport.session());
     // users router
@@ -49,6 +56,16 @@ app.get('/', (req, res) => {
 });
 
 // passport stuff
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+  });
+  
+  passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+      done(err, user);
+    });
+  });
+
 passport.use(new LocalStrategy(
     function(username, password, done) {
       User.findOne({ username: username }, function(err, user) {
@@ -70,6 +87,19 @@ passport.use(new LocalStrategy(
         failureFlash: true
     })
 );
+
+app.post('/submit', (req, res, next) => {
+    let userInfo = req.body;
+    res.status(200).send(userInfo);
+    let newUser = new User({
+        username: userInfo.username, 
+        password: userInfo.password, 
+    });
+    newUser.save(function (err, newUser) {
+        if (err) return console.error(err);
+      });
+    console.log(newUser);
+  });
 
 // start server
 app.listen(port, () => {

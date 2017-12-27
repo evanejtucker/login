@@ -14,67 +14,32 @@
   </head>
   <body>
 
-    <div class='container'>
-        <div class='row'>
-          <div class='col s12 m6' id='login'>
-
-            <h3>Login</h3>
-            <div class="input-field col s12">
-              <input placeholder="Username" id="userName" type="text" class="validate">
-            </div>
-            <div class="input-field col s12">
-              <input placeholder="Password" id="password" type="text" class="validate">
-            </div>
-
-            <div class='row'>
-              <div class="col s6">
-                <a class="waves-effect waves-light btn">Login</a>
-              </div>
-              <div class="col s6">
-                <!-- Modal Trigger -->
-                <a class="waves-effect waves-light btn modal-trigger" id="accountModal" href="#modal1">Create Account</a>
-              </div>
-            </div>
-
+    <div class="container">
+        <form action="/login" method="post">
+          <div>
+              <label>Username:</label>
+              <input type="text" name="username"/>
           </div>
-        </div>
+          <div>
+              <label>Password:</label>
+              <input type="password" name="password"/>
+          </div>
+          <div>
+              <input type="submit" value="Log In"/>
+          </div>
+      </form>
+      <hr>
+      <!-- Modal Trigger -->
+      <a class="waves-effect waves-light btn modal-trigger" id="accountModal" href="#modal1">Create Account</a>
     </div>
-
-    <div id="modal1" class="modal">
-      <div class="modal-content">
-          <form action="/login" method="post">
-            <div>
-                <label>Username:</label>
-                <input type="text" name="username"/>
-            </div>
-            <div>
-                <label>Password:</label>
-                <input type="password" name="password"/>
-            </div>
-            <div>
-                <input type="submit" value="Log In"/>
-            </div>
-        </form>
-      </div>
-    </div>
-
+      
 
   <!-- Create Account Modal -->
-  <!-- <div id="modal1" class="modal">
+  <div id="modal1" class="modal">
     <div class="modal-content">
       <h2>Create Account</h2>
         <div class="row">
             <form class="col s12">
-              <div class="row">
-                <div class="input-field col s6">
-                  <input placeholder="first name" id="first_name" type="text" class="validate">
-                  <label for="first_name">First Name</label>
-                </div>
-                <div class="input-field col s6">
-                  <input placeholder="last name" id="last_name" type="text" class="validate">
-                  <label for="last_name">Last Name</label>
-                </div>
-              </div>
               <div class="row">
                   <div class="input-field col s12">
                     <input id="newUsername" type="text" class="validate">
@@ -87,18 +52,6 @@
                   <label for="newPassword">Password</label>
                 </div>
               </div>
-              <div class="row">
-                  <div class="input-field col s12">
-                    <input id="confirmPassword" type="password" class="validate">
-                    <label for="confirmPassword">Confirm Password</label>
-                  </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="email" type="email" class="validate">
-                  <label for="email">Email</label>
-                </div>
-              </div>
             </form>
           </div>
       <a class="waves-effect waves-light btn" id="createNewUser">Create</a>
@@ -106,7 +59,7 @@
     <div class="modal-footer">
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">close</a>
     </div>
-  </div> -->
+  </div>
     
 <!-- JQuery -->
 <script
